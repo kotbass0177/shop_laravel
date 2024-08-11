@@ -1,0 +1,24 @@
+services:
+  cssp-web:
+    image: cssp-image
+    ports:
+        - '8989:8000'
+    environment:
+      WITH_SCHEDULER: true
+      #WITH_HORIZON: true
+      #RUNNING_MIGRATIONS_AND_SEEDERS: true
+    volumes:
+        - 'cssp-prod:/var/www/html'
+    networks:
+        - cssp
+  cssp-queue:
+    image: cssp-image
+    environment:
+      CONTAINER_MODE: 'horizon'
+    networks:
+        - cssp
+networks:
+  cssp:
+    driver: bridge
+volumes:
+  cssp-web:

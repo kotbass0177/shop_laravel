@@ -1,0 +1,603 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost:89"
+        }
+    ],
+    "info": {
+        "name": "CSSP App",
+        "_postman_id": "c258dcc3-893f-4e2f-92ba-f16aa38bd43e",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Account management",
+            "description": "",
+            "item": [
+                {
+                    "name": "POST api\/{panel}\/users",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:panel\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:panel\/users",
+                            "variable": [
+                                {
+                                    "id": "panel",
+                                    "key": "panel",
+                                    "value": "odit",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/{panel}\/users\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:panel\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:panel\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "panel",
+                                    "key": "panel",
+                                    "value": "nam",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "autem",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/{panel}\/users",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:panel\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:panel\/users",
+                            "variable": [
+                                {
+                                    "id": "panel",
+                                    "key": "panel",
+                                    "value": "laboriosam",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "POST api\/{panel}\/shield\/roles",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:panel\/shield\/roles",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:panel\/shield\/roles",
+                            "variable": [
+                                {
+                                    "id": "panel",
+                                    "key": "panel",
+                                    "value": "pariatur",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT api\/{panel}\/shield\/roles\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:panel\/shield\/roles\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:panel\/shield\/roles\/:id",
+                            "variable": [
+                                {
+                                    "id": "panel",
+                                    "key": "panel",
+                                    "value": "quia",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "omnis",
+                                    "description": "The ID of the role."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/{panel}\/shield\/roles\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:panel\/shield\/roles\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:panel\/shield\/roles\/:id",
+                            "variable": [
+                                {
+                                    "id": "panel",
+                                    "key": "panel",
+                                    "value": "rerum",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "rem",
+                                    "description": "The ID of the role."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/{panel}\/shield\/roles",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:panel\/shield\/roles",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:panel\/shield\/roles",
+                            "variable": [
+                                {
+                                    "id": "panel",
+                                    "key": "panel",
+                                    "value": "officiis",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/{panel}\/shield\/roles\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:panel\/shield\/roles\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:panel\/shield\/roles\/:id",
+                            "variable": [
+                                {
+                                    "id": "panel",
+                                    "key": "panel",
+                                    "value": "consequuntur",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "exercitationem",
+                                    "description": "The ID of the role."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/{panel}\/users\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:panel\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:panel\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "panel",
+                                    "key": "panel",
+                                    "value": "perferendis",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "fugit",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/{panel}\/users\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/:panel\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/:panel\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "panel",
+                                    "key": "panel",
+                                    "value": "expedita",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "consequatur",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/health",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/health",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/health"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "must-revalidate, no-cache, no-store, post-check=0, pre-check=0, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"finishedAt\":1715419539,\"checkResults\":[{\"name\":\"OptimizedApp\",\"label\":\"Optimized App\",\"notificationMessage\":\"Configs are not cached.\",\"shortSummary\":\"Failed\",\"status\":\"failed\",\"meta\":[]},{\"name\":\"DebugMode\",\"label\":\"Debug Mode\",\"notificationMessage\":\"The debug mode was expected to be `false`, but actually was `true`\",\"shortSummary\":\"true\",\"status\":\"failed\",\"meta\":{\"actual\":true,\"expected\":false}},{\"name\":\"Environment\",\"label\":\"Environment\",\"notificationMessage\":\"The environment was expected to be `production`, but actually was `local`\",\"shortSummary\":\"local\",\"status\":\"failed\",\"meta\":{\"actual\":\"local\",\"expected\":\"production\"}},{\"name\":\"Database\",\"label\":\"Database\",\"notificationMessage\":\"\",\"shortSummary\":\"Ok\",\"status\":\"ok\",\"meta\":{\"connection_name\":\"sqlite\"}},{\"name\":\"Redis\",\"label\":\"Redis\",\"notificationMessage\":\"\",\"shortSummary\":\"Ok\",\"status\":\"ok\",\"meta\":{\"connection_name\":\"default\"}},{\"name\":\"Cache\",\"label\":\"Cache\",\"notificationMessage\":\"\",\"shortSummary\":\"Ok\",\"status\":\"ok\",\"meta\":{\"driver\":\"database\"}},{\"name\":\"Queue\",\"label\":\"Queue\",\"notificationMessage\":\"Queue jobs running failed. Check meta for more information.\",\"shortSummary\":\"Failed\",\"status\":\"failed\",\"meta\":[\"The last run of the `default` queue was more than 11642.596572967 minutes ago.\"]},{\"name\":\"Schedule\",\"label\":\"Schedule\",\"notificationMessage\":\"The last run of the schedule was more than 11642.613263183 minutes ago.\",\"shortSummary\":\"Failed\",\"status\":\"failed\",\"meta\":[]},{\"name\":\"UsedDiskSpace\",\"label\":\"Used Disk Space\",\"notificationMessage\":\"\",\"shortSummary\":\"4%\",\"status\":\"ok\",\"meta\":{\"disk_space_used_percentage\":4}},{\"name\":\"SecurityAdvisories\",\"label\":\"Security Advisories\",\"notificationMessage\":\"\",\"shortSummary\":\"Ok\",\"status\":\"ok\",\"meta\":[]}]}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "type": "string"
+            }
+        ]
+    }
+}

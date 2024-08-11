@@ -1,0 +1,443 @@
+openapi: 3.0.3
+info:
+  title: 'CSSP App'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:89'
+paths:
+  '/api/{panel}/users':
+    post:
+      summary: ''
+      operationId: postApiPanelUsers
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Account management'
+    get:
+      summary: ''
+      operationId: getApiPanelUsers
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Account management'
+    parameters:
+      -
+        in: path
+        name: panel
+        description: ''
+        example: odit
+        required: true
+        schema:
+          type: string
+  '/api/{panel}/users/{id}':
+    delete:
+      summary: ''
+      operationId: deleteApiPanelUsersId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Account management'
+    put:
+      summary: ''
+      operationId: putApiPanelUsersId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    get:
+      summary: ''
+      operationId: getApiPanelUsersId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: panel
+        description: ''
+        example: nam
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: autem
+        required: true
+        schema:
+          type: string
+  '/api/{panel}/shield/roles':
+    post:
+      summary: ''
+      operationId: postApiPanelShieldRoles
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    get:
+      summary: ''
+      operationId: getApiPanelShieldRoles
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: panel
+        description: ''
+        example: pariatur
+        required: true
+        schema:
+          type: string
+  '/api/{panel}/shield/roles/{id}':
+    put:
+      summary: ''
+      operationId: putApiPanelShieldRolesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiPanelShieldRolesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    get:
+      summary: ''
+      operationId: getApiPanelShieldRolesId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: panel
+        description: ''
+        example: quia
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'The ID of the role.'
+        example: omnis
+        required: true
+        schema:
+          type: string
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/health:
+    get:
+      summary: ''
+      operationId: getApiHealth
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  finishedAt: 1715419539
+                  checkResults:
+                    -
+                      name: OptimizedApp
+                      label: 'Optimized App'
+                      notificationMessage: 'Configs are not cached.'
+                      shortSummary: Failed
+                      status: failed
+                      meta: []
+                    -
+                      name: DebugMode
+                      label: 'Debug Mode'
+                      notificationMessage: 'The debug mode was expected to be `false`, but actually was `true`'
+                      shortSummary: 'true'
+                      status: failed
+                      meta:
+                        actual: true
+                        expected: false
+                    -
+                      name: Environment
+                      label: Environment
+                      notificationMessage: 'The environment was expected to be `production`, but actually was `local`'
+                      shortSummary: local
+                      status: failed
+                      meta:
+                        actual: local
+                        expected: production
+                    -
+                      name: Database
+                      label: Database
+                      notificationMessage: ''
+                      shortSummary: Ok
+                      status: ok
+                      meta:
+                        connection_name: sqlite
+                    -
+                      name: Redis
+                      label: Redis
+                      notificationMessage: ''
+                      shortSummary: Ok
+                      status: ok
+                      meta:
+                        connection_name: default
+                    -
+                      name: Cache
+                      label: Cache
+                      notificationMessage: ''
+                      shortSummary: Ok
+                      status: ok
+                      meta:
+                        driver: database
+                    -
+                      name: Queue
+                      label: Queue
+                      notificationMessage: 'Queue jobs running failed. Check meta for more information.'
+                      shortSummary: Failed
+                      status: failed
+                      meta:
+                        - 'The last run of the `default` queue was more than 11642.596572967 minutes ago.'
+                    -
+                      name: Schedule
+                      label: Schedule
+                      notificationMessage: 'The last run of the schedule was more than 11642.613263183 minutes ago.'
+                      shortSummary: Failed
+                      status: failed
+                      meta: []
+                    -
+                      name: UsedDiskSpace
+                      label: 'Used Disk Space'
+                      notificationMessage: ''
+                      shortSummary: 4%
+                      status: ok
+                      meta:
+                        disk_space_used_percentage: 4
+                    -
+                      name: SecurityAdvisories
+                      label: 'Security Advisories'
+                      notificationMessage: ''
+                      shortSummary: Ok
+                      status: ok
+                      meta: []
+                properties:
+                  finishedAt:
+                    type: integer
+                    example: 1715419539
+                  checkResults:
+                    type: array
+                    example:
+                      -
+                        name: OptimizedApp
+                        label: 'Optimized App'
+                        notificationMessage: 'Configs are not cached.'
+                        shortSummary: Failed
+                        status: failed
+                        meta: []
+                      -
+                        name: DebugMode
+                        label: 'Debug Mode'
+                        notificationMessage: 'The debug mode was expected to be `false`, but actually was `true`'
+                        shortSummary: 'true'
+                        status: failed
+                        meta:
+                          actual: true
+                          expected: false
+                      -
+                        name: Environment
+                        label: Environment
+                        notificationMessage: 'The environment was expected to be `production`, but actually was `local`'
+                        shortSummary: local
+                        status: failed
+                        meta:
+                          actual: local
+                          expected: production
+                      -
+                        name: Database
+                        label: Database
+                        notificationMessage: ''
+                        shortSummary: Ok
+                        status: ok
+                        meta:
+                          connection_name: sqlite
+                      -
+                        name: Redis
+                        label: Redis
+                        notificationMessage: ''
+                        shortSummary: Ok
+                        status: ok
+                        meta:
+                          connection_name: default
+                      -
+                        name: Cache
+                        label: Cache
+                        notificationMessage: ''
+                        shortSummary: Ok
+                        status: ok
+                        meta:
+                          driver: database
+                      -
+                        name: Queue
+                        label: Queue
+                        notificationMessage: 'Queue jobs running failed. Check meta for more information.'
+                        shortSummary: Failed
+                        status: failed
+                        meta:
+                          - 'The last run of the `default` queue was more than 11642.596572967 minutes ago.'
+                      -
+                        name: Schedule
+                        label: Schedule
+                        notificationMessage: 'The last run of the schedule was more than 11642.613263183 minutes ago.'
+                        shortSummary: Failed
+                        status: failed
+                        meta: []
+                      -
+                        name: UsedDiskSpace
+                        label: 'Used Disk Space'
+                        notificationMessage: ''
+                        shortSummary: 4%
+                        status: ok
+                        meta:
+                          disk_space_used_percentage: 4
+                      -
+                        name: SecurityAdvisories
+                        label: 'Security Advisories'
+                        notificationMessage: ''
+                        shortSummary: Ok
+                        status: ok
+                        meta: []
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: OptimizedApp
+                        label:
+                          type: string
+                          example: 'Optimized App'
+                        notificationMessage:
+                          type: string
+                          example: 'Configs are not cached.'
+                        shortSummary:
+                          type: string
+                          example: Failed
+                        status:
+                          type: string
+                          example: failed
+                        meta:
+                          type: array
+                          example: []
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: 'Account management'
+    description: ''
+  -
+    name: Endpoints
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []

@@ -1,0 +1,47 @@
+stages:
+  - publish
+  - deploy
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_IMAGE_NAME: $DOCKER_HUB_USER/$DOCKER_HUB_PROJECT
+  TAG_LATEST: $DOCKER_IMAGE_NAME:latest
+  # TAG_COMMIT: $DOCKER_IMAGE_NAME:latest:$CI_COMMIT_SHORT_SHA
+before_script:
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
+publish:
+  image: docker:latest
+  stage: publish
+  tags:
+    - deployment
+  services:
+    - docker:dind
+  script:
+    - git log -1 --pretty='%D' $CI_COMMIT_TAG > tag_info.txt
+    - | 
+    if ! grep -q 'origin/master' tag_info.txt; then
+      exit 1
+    fi
+    - docker build -t $TAG_LATEST -f production/FrankenPHP.Dockerfile .
+    # - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    # - docker push $TAG_COMMIT
+    - docker push $TAG_LATEST
+deploy:
+  image: alpine:latest
+  stage: deploy
+  tags:
+    - deployment
+  before_script:
+    - apk add gettext openssh-client
+  script:
+    - git log -1 --pretty='%D' $CI_COMMIT_TAG > tag_info.txt
+    - | 
+    if ! grep -q 'origin/master' tag_info.txt; then
+      exit 1
+    fi
+    - eval `ssh-agent`
+    - ssh-add <(echo "$ID_RSA")
+    - scp docker-compose.prod.yml $SERVER_USER@$SERVER_IP:$DEPLOY_PATH
+    - ssh $SERVER_USER@$SERVER_IP "cd $DEPLOY_PATH; 
+        docker login -u $DOCKER_HUB_USER 
+          -p $DOCKER_HUB_PASSWORD;
+        docker compose up -d"

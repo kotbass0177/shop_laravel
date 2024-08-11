@@ -1,0 +1,29 @@
+models:
+  # Company:
+  #   code: string index nullable
+  #   name: string index nullable
+  #   active: boolean index default:true
+  #   created_by: id foreign:users.id nullable
+  #   updated_by: id foreign:users.id nullable
+  #   deleted_by: id foreign:users.id nullable
+  #   softDeletes
+
+  # Branch:
+  #   code: string index nullable
+  #   name: string index nullable
+  #   active: boolean index default:true
+  #   created_by: id foreign:users.id nullable
+  #   updated_by: id foreign:users.id nullable
+  #   deleted_by: id foreign:users.id nullable
+  #   softDeletes
+  job_title:
+    code: string index nullable
+    name: string index nullable
+    active: boolean index default:true
+    created_by: id foreign:users.id nullable
+    updated_by: id foreign:users.id nullable
+    deleted_by: id foreign:users.id nullable
+    softDeletes
+
+
+    

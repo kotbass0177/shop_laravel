@@ -1,0 +1,112 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The skeleton application for the Laravel framework.",
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "abr4xas/clarity-laravel": "^1.0",
+        "awcodes/filament-versions": "^2.0",
+        "bezhansalleh/filament-exceptions": "^2.1",
+        "bezhansalleh/filament-shield": "^3.2",
+        "calebporzio/sushi": "^2.5",
+        "dutchcodingcompany/filament-socialite": "^1.4",
+        "filament/filament": "^3.2",
+        "filament/spatie-laravel-google-fonts-plugin": "^3.2",
+        "hasnayeen/themes": "^3.0",
+        "jeffgreco13/filament-breezy": "^2.3",
+        "laravel/framework": "^11.0",
+        "laravel/horizon": "^5.24",
+        "laravel/octane": "^2.4",
+        "laravel/pennant": "*",
+        "laravel/pulse": "^1.0",
+        "laravel/sanctum": "^4.0",
+        "laravel/telescope": "^5.0",
+        "laravel/tinker": "^2.9",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "mistralys/changelog-parser": "^1.0",
+        "mobiledetect/mobiledetectlib": "^4.8",
+        "noxoua/filament-activity-log": "^2.2",
+        "owenvoke/blade-fontawesome": "^2.6",
+        "patipattip/filament-feature-flags": "dev-main",
+        "richan-fongdasen/eloquent-blameable": "^1.10",
+        "rupadana/filament-api-service": "^3.2",
+        "shuvroroy/filament-spatie-laravel-health": "^2.0",
+        "socialiteproviders/google": "^4.1",
+        "spatie/eloquent-sortable": "^4.2",
+        "spatie/laravel-http-logger": "^1.11",
+        "spatie/laravel-log-dumper": "^1.5",
+        "spatie/laravel-schedule-monitor": "^3.7",
+        "spatie/security-advisories-health-check": "^1.2",
+        "ysfkaya/filament-phone-input": "^2.3"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.12",
+        "fakerphp/faker": "^1.23",
+        "jasonmccreary/laravel-test-assertions": "^2.4",
+        "knuckleswtf/scribe": "^4.35",
+        "laravel-shift/blueprint": "^2.10",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.30",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.0",
+        "pestphp/pest-plugin-livewire": "^2.1",
+        "pestphp/pest-plugin-stressless": "^2.2",
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "11.x-dev"
+        },
+        "laravel": {
+            "dont-discover": [
+                "laravel/telescope"
+            ]
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

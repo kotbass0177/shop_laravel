@@ -14,7 +14,7 @@
     x-data="{ 
         state: $wire.$entangle('{{ $getStatePath() }}') 
     }">
-       <div class="text-7xl flex justify-end {{ $bg }}">
+       <div class="text-8xl flex justify-end {{ $bg }}">
             <h1 >{{ $price }}</h1>
             <h1 class="ml-8"> บาท</h1>
        </div>

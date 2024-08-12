@@ -37,11 +37,16 @@ class CreateOrders extends CreateRecord
 
     protected function beforeCreate(): void
     {
-        dd($this->record);
+        // dd($this->record);
     }
     protected function afterCreate(): void
     {
         //dd($this->record);
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return  $this->getResource()::getUrl('create');
     }
     
 }

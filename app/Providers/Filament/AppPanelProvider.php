@@ -53,6 +53,7 @@ class AppPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->maxContentWidth('8xl')
             ->id('app')
             ->path('/app')
             ->login(Login::class)

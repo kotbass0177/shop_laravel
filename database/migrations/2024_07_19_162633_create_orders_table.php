@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('status')->notnull()->default('pending')->comment("สถานะออเดอร์");
             $table->string('type')->nullable()->comment("ประเภทออเดอร์");
             $table->float('price_total')->nullable()->comment("ราคาทั้งหมด");
+            $table->float('change_amount')->nullable()->comment("เงินทอน");
+            $table->float('payment_type')->nullable()->comment("รับเงินสดหรือโอน");
             $table->json('products')->nullable()->comment("รายการสินค้า");
             $table->boolean('active')->nullable()->comment("สถานะการใช้งาน");
             $table->foreignId('created_by')->nullable()->constrained('users')->comment('ผู้ออกออเดอร์');

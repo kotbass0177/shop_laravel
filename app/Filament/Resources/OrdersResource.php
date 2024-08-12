@@ -92,40 +92,39 @@ class OrdersResource extends Resource
                 // ])
                 //     ->collapsible(true)
                 //     ->visibleOn('create'),
-                Forms\Components\Section::make()
-                    ->schema([
-                        Forms\Components\TextInput::make('product_code')
-                            ->label('scan barcode')
-                            ->dehydrated(false)
-                            ->live()
-                            ->afterStateUpdated(function (string $operation, $state, Forms\Set $set, Forms\Get $get, \Livewire\Component $livewire) {
-                                self::setProducts($state, $set, $get, $livewire);
-                            })
-                            ->autofocus(),
-                        Forms\Components\TextInput::make('product_qty')
-                            ->label('จำนวน')
-                            ->dehydrated(false)
-                            ->default(1)
-                    ])->columns(2),
-                Forms\Components\TextInput::make('order_code')
-                    ->label(self::$model::$attributeLabels['order_code'])
-                    ->readOnly()
-                    ->default($orderCode)
-                    ->columnSpanFull(),
-                Forms\Components\Hidden::make('order_date')
-                    ->default(now()),
-                Forms\Components\Hidden::make('status')
-                    ->default("pending"),
-                Forms\Components\Hidden::make('type')
-                    ->default("ORDER"),
-                // Forms\Components\TextInput::make('price_total')
-                //     ->numeric()
-                //     ->readOnly(true),
+                
+                
                 Forms\Components\Hidden::make('price_total'),
                 Forms\Components\Split::make([
-                    // Section::make('Products')
-                    //     ->heading('')
-                    //     ->schema([
+                    Forms\Components\Group::make([
+                            
+                            Forms\Components\Section::make()
+                                ->schema([
+                                    Forms\Components\TextInput::make('product_code')
+                                        ->label('scan barcode')
+                                        ->dehydrated(false)
+                                        ->live()
+                                        ->afterStateUpdated(function (string $operation, $state, Forms\Set $set, Forms\Get $get, \Livewire\Component $livewire) {
+                                            self::setProducts($state, $set, $get, $livewire);
+                                        })
+                                        ->autofocus(),
+                                    Forms\Components\TextInput::make('product_qty')
+                                        ->label('จำนวน')
+                                        ->dehydrated(false)
+                                        ->default(1)
+                                ])->columns(2),
+                            Forms\Components\TextInput::make('order_code')
+                                ->label(self::$model::$attributeLabels['order_code'])
+                                ->readOnly()
+                                ->default($orderCode)
+                                ->columnSpanFull(),
+                            Forms\Components\Hidden::make('order_date')
+                                ->default(now()),
+                            Forms\Components\Hidden::make('status')
+                                ->default("pending"),
+                            Forms\Components\Hidden::make('type')
+                                ->default("ORDER"),
+
                             TableRepeater::make('products')
                                 ->label('')
                                 ->headers([
@@ -179,10 +178,7 @@ class OrdersResource extends Resource
                                 ->addable(false)
                                 ->orderable(false)
                                 ,
-                        // ])
-                        // ->collapsible()
-                        // ->persistCollapsed()
-                        // ,
+                        ]),
                     Forms\Components\Group::make([
                         Section::make('gross')
                             ->heading('')
@@ -208,12 +204,15 @@ class OrdersResource extends Resource
                                 TextH1::make('change_amount')
                                     ->label('เงินทอน')
                                     ->default(0)
+                                    ->dehydrated(false)
                                     ->backgroundColor('bg-yellow-500'),
                                 Forms\Components\ToggleButtons::make('payment_type')
                                     ->label('รับเงินสดหรือโอน')
+                                    ->dehydrated(false)
                                     ->boolean()
                                     ->inline()
                                     ->grouped()
+                                    ->default(0)
                                     ->options([
                                         'เงินสด','เงินโอน'
                                     ])
@@ -380,7 +379,7 @@ class OrdersResource extends Resource
                     Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                 ]),
-            ]);
+            ])->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

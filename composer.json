@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.2",
         "abr4xas/clarity-laravel": "^1.0",
+        "awcodes/filament-table-repeater": "^3.0",
         "awcodes/filament-versions": "^2.0",
         "bezhansalleh/filament-exceptions": "^2.1",
         "bezhansalleh/filament-shield": "^3.2",

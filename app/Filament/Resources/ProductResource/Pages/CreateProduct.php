@@ -14,4 +14,13 @@ class CreateProduct extends CreateRecord
     {
         //dd($this->record);
     }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            $this->getCreateFormAction()
+                ->label('บันทึก'),
+            $this->getCancelFormAction(),
+        ];
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrdersResource\Pages;
 use App\Filament\Resources\OrdersResource\RelationManagers;
+use App\Forms\Components\TextH1;
 use App\Models\Orders;
 use App\Models\Product;
 use Filament\Forms;
@@ -20,6 +21,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Log;
+
+use Awcodes\TableRepeater\Components\TableRepeater;
+use Awcodes\TableRepeater\Header;
 
 class OrdersResource extends Resource
 {
@@ -106,70 +110,123 @@ class OrdersResource extends Resource
                 Forms\Components\TextInput::make('order_code')
                     ->label(self::$model::$attributeLabels['order_code'])
                     ->readOnly()
-                    ->default($orderCode),
+                    ->default($orderCode)
+                    ->columnSpanFull(),
                 Forms\Components\Hidden::make('order_date')
                     ->default(now()),
                 Forms\Components\Hidden::make('status')
                     ->default("pending"),
                 Forms\Components\Hidden::make('type')
                     ->default("ORDER"),
-                Forms\Components\TextInput::make('price_total')
-                    ->numeric()
-                    ->readOnly(true),
-                Section::make('Products')
-                    ->heading('รายการสินค้า')
-                    ->schema([
-                        Repeater::make('products')
-                            ->label('')
+                // Forms\Components\TextInput::make('price_total')
+                //     ->numeric()
+                //     ->readOnly(true),
+                Forms\Components\Hidden::make('price_total'),
+                Forms\Components\Split::make([
+                    // Section::make('Products')
+                    //     ->heading('')
+                    //     ->schema([
+                            TableRepeater::make('products')
+                                ->label('')
+                                ->headers([
+                                    Header::make('รหัส')->width('150px'),
+                                    Header::make('ชื่อ')->width('150px'),
+                                    Header::make('ราคา')->width('150px'),
+                                    Header::make('จำนวน')->width('150px'),
+                                ])
+                                ->emptyLabel('ไม่มีรายการสินค้า')
+                                ->schema([
+                                    // Forms\Components\FileUpload::make('image')
+                                        //     ->image()
+                                        //     ->imagePreviewHeight('80')
+                                        //     ->deletable(false),
+                                        Forms\Components\TextInput::make('code')
+                                            // ->label(Product::$attributeLabels['code'])
+                                            ->readOnly(),
+                                        Forms\Components\TextInput::make('name')
+                                            // ->label(Product::$attributeLabels['name'])
+                                            ->readOnly(),
+                                        Forms\Components\TextInput::make('price')
+                                            // ->label(Product::$attributeLabels['price'])
+                                            ->readOnly(),
+                                        Forms\Components\TextInput::make('qty')
+                                            // ->label('จำนวนสินค้า')
+                                            ->numeric()
+                                            ->readOnly()
+                                ])
+                                ->deleteAction(function (Action $action, string $operation, $state, Forms\Set $set, Forms\Get $get, \Livewire\Component $livewire) {
+
+                                    return $action
+                                        ->requiresConfirmation()
+                                        ->modalDescription('Are you sure you\'d like to delete this item? This cannot be undone.')
+                                        ->before(function ($component, $get, $set, $state, $livewire) {
+                                            Log::emergency('ลบ Start');
+                                        })
+                                        ->after(function ($component, $get, $set, $state, $livewire) {
+                                            Log::emergency('ลบ End');
+                                            self::updateTotals($set, $get, $livewire);
+
+                                            Notification::make()
+                                                ->icon('heroicon-o-check-circle')
+                                                ->success()
+                                                ->title('สำเร็จ!')
+                                                ->body('ลบสินค้าออกจากตะกร้าสำเร็จ')
+                                                ->send();
+                                        });
+                                })
+                                ->default([])
+                                ->columnSpanFull()
+                                ->addable(false)
+                                ->orderable(false)
+                                ,
+                        // ])
+                        // ->collapsible()
+                        // ->persistCollapsed()
+                        // ,
+                    Forms\Components\Group::make([
+                        Section::make('gross')
+                            ->heading('')
                             ->schema([
-                                Group::make([
-                                    Forms\Components\FileUpload::make('image')
-                                        ->image()
-                                        ->imagePreviewHeight('80')
-                                        ->deletable(false),
-                                    Forms\Components\TextInput::make('code')
-                                        ->label(Product::$attributeLabels['code'])
-                                        ->readOnly(),
-                                    Forms\Components\TextInput::make('name')
-                                        ->label(Product::$attributeLabels['name'])
-                                        ->readOnly(),
-                                    Forms\Components\TextInput::make('price')
-                                        ->label(Product::$attributeLabels['price'])
-                                        ->readOnly(),
-                                    Forms\Components\TextInput::make('qty')
-                                        ->label('จำนวนสินค้า')
-                                        ->numeric()
-                                        ->readOnly()
-                                ])->columns(5),
-                            ])
-                            ->deleteAction(function (Action $action, string $operation, $state, Forms\Set $set, Forms\Get $get, \Livewire\Component $livewire) {
-
-                                return $action
-                                    ->requiresConfirmation()
-                                    ->modalDescription('Are you sure you\'d like to delete this item? This cannot be undone.')
-                                    ->before(function ($component, $get, $set, $state, $livewire) {
-                                        Log::emergency('ลบ Start');
+                                TextH1::make('price_total')
+                                    ->label('ราคารวม')
+                                    ->default(0)
+                                    ->backgroundColor('bg-blue-500'),
+                                Forms\Components\TextInput::make('received_amount')
+                                    ->label('รับเงินจากลูกค้า')
+                                    ->dehydrated(false)
+                                    ->live(false)
+                                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set, Forms\Get $get, \Livewire\Component $livewire) {
+                                        if(strlen($state) > 1) {
+                                            $pt = floatval($get('price_total'));
+                                            $ra = floatval($state);
+                                            $ca = $ra - $pt;
+                                            $set('change_amount', $ca);
+                                        }
                                     })
-                                    ->after(function ($component, $get, $set, $state, $livewire) {
-                                        Log::emergency('ลบ End');
-                                        self::updateTotals($set, $get, $livewire);
-
-                                        Notification::make()
-                                            ->icon('heroicon-o-check-circle')
-                                            ->success()
-                                            ->title('สำเร็จ!')
-                                            ->body('ลบสินค้าออกจากตะกร้าสำเร็จ')
-                                            ->send();
-                                    });
-                            })
-                            ->default([])
-                            ->columnSpanFull()
-                            ->addable(false)
-                            ->orderable(false)
-
-                    ]),
+                                    ->suffix('บาท')
+                                    ,
+                                TextH1::make('change_amount')
+                                    ->label('เงินทอน')
+                                    ->default(0)
+                                    ->backgroundColor('bg-yellow-500'),
+                                Forms\Components\ToggleButtons::make('payment_type')
+                                    ->label('รับเงินสดหรือโอน')
+                                    ->boolean()
+                                    ->inline()
+                                    ->grouped()
+                                    ->options([
+                                        'เงินสด','เงินโอน'
+                                    ])
+                                    ->icons([
+                                        0 => 'heroicon-o-banknotes',
+                                        1 => 'heroicon-o-credit-card',
+                                    ])
+                            ])
+                    ])
+                ])
+                ->columnSpanFull(),
                 Forms\Components\Hidden::make('active')
-                    ->default(true)
+                    ->default(true),
                 // Forms\Components\TextInput::make('created_by')
                 //     ->numeric(),
                 // Forms\Components\TextInput::make('updated_by')
@@ -201,7 +258,7 @@ class OrdersResource extends Resource
                     ->success()
                     ->title('สำเร็จ!')
                     ->body('เพิ่มสินค้าเข้าตำกร้าเรียบร้อย')
-                    ->duration(2000)
+                    ->duration(1000)
                     ->send();
 
                 if (count($carts) == 0) {

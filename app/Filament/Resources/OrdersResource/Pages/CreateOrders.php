@@ -15,9 +15,29 @@ class CreateOrders extends CreateRecord
         return parent::getCreateFormAction()->extraAttributes(['type' => 'button', 'wire:click' => 'create']);
     }
 
+    protected function getHeaderActions(): array
+    {
+        return [
+            // Actions\CreateAction::make(),
+            $this->getCreateFormAction()
+                ->label('บันทึกการขาย'),
+            $this->getCancelFormAction(),
+            // $this->getCreateAnotherFormAction(),
+        ];
+    }
+
+    protected function getFormActions(): array
+    {
+        // return [
+        //     $this->getCreateFormAction(),
+        //     $this->getCancelFormAction()
+        // ];
+        return [];
+    }
+
     protected function beforeCreate(): void
     {
-        // dd($this->record);
+        dd($this->record);
     }
     protected function afterCreate(): void
     {

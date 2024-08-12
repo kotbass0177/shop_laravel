@@ -57,11 +57,17 @@ class ProductResource extends Resource
                                 ->label(self::$model::$attributeLabels['code']),
                             Forms\Components\TextInput::make('name')
                                 ->label(self::$model::$attributeLabels['name']),
-                            Forms\Components\TextInput::make('status')
-                                ->label(self::$model::$attributeLabels['status']),
-                            Forms\Components\Toggle::make('active')
-                                ->label(self::$model::$attributeLabels['active'])
-                                ->required(),
+                            // Forms\Components\TextInput::make('status')
+                            //     ->label(self::$model::$attributeLabels['status'])
+                            //     ->default('COMPLETE'),
+                            // Forms\Components\Toggle::make('active')
+                            //     ->label(self::$model::$attributeLabels['active'])
+                            //     ->default(true)
+                            //     ->required(),
+                            Forms\Components\Hidden::make('status')
+                                ->default('COMPLETE'),
+                            Forms\Components\Hidden::make('active')
+                                ->default(true),
                         ]),
                     Forms\Components\Section::make('ราคาและโปรโมชั่น')
                         ->schema([
